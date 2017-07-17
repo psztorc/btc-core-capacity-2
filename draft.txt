@@ -1,27 +1,27 @@
- ==== Beginning of July 2017 Roadmap Draft ====
+ ==== Core "Capacity Forecast" (July 2017) ====
 
-This document updates the previous roadmap [1] of Dec 2015. The older statement endorsed a belief that "the community is ready to deliver on its shared vision that addresses the needs of the system while upholding its values".
+This document updates the "core roadmap" [1] of Dec 2015. Below is a list of technologies which either increase Bitcoin's maximum tps rate ("capacity"), or which make it easier to process a higher volume of transactions ("scalability").
 
-That belief has not changed, but the shared vision has certainly grown sharper over the last 18 months. Below is a list of technologies which either increase Bitcoin's maximum tps rate ("capacity"), or which make it easier to process a higher volume of transactions ("scalability").
+DISCLAIMER: This list is provided solely for informational and planning purposes -- to help users, investors, and industry leaders gain more realistic expectations for what the Bitcoin network will be able to do and when. The specific deadlines might be missed for any number of reasons, including typical R&D reasons (unexpected setbacks, lengthy review process) as well as atypical Bitcoin-specific reasons (hashrate refusal to activate new features). Additionally, this document applies narrowly to Bitcoin Core, and not to Bitcoin as a whole.
 
 First, over the past 18 months, the technical community has completed a number of items [2] on the Dec 2015 roadmap. VersonBits (BIP 9) enables Bitcoin to handle multiple soft fork upgrades at once. Compact Blocks (BIP 152) allows for much faster block propagation, as does the FIBRE Network [3]. Check Sequence Verify (BIP 112) allows trading partners to mutually update an active transaction without writing it to the blockchain (this helps to enable the Lightning Network).
 
 Second, Segregated Witness (BIP 141), which reorganizes data in blocks to handle signatures separately, has been completed and awaits activation (multiple BIPS). It is estimated to increase capacity by a factor of 2.2. It also improves scalability in many ways. First, SW includes a fee-policy which encourages users to minimize their impact on the UTXO set. Second, SW achieves linear scaling of sighash operations, which prevents the network from crashing when large transactions are broadcast. Third, SW provides an efficiency gain for everyone who is not verifying signatures, as these no longer need to be downloaded or stored. SegWit is an enabling technology for the Lightning Network, script versioning (specifically Schnorr signatures), and has a number of benefits which are unrelated to capacity [4].
 
-Third, the Lightning Network, which allows users to transact without broadcasting to the network, is complete [5, 6] and awaits the activation of SegWit. For those users who are able to make a single on-chain transaction, it is estimated to increase both capacity and scalability by a factor of ~1000 (although these capacity increases will vary with usage patterns). LN also greatly improves transaction speed and transaction privacy.
+Third, the Lightning Network, which allows users to transact without broadcasting to the network, is currently usable on Litecoin [5] and awaits the activation of SegWit. For those users who are able to make a single on-chain transaction, it is estimated to increase both capacity and scalability by a factor of ~1000 (although these capacity increases will vary with usage patterns). Multiple teams are working on LN development [6], which will likely lead to faster overall progress. LN also greatly improves transaction speed and transaction privacy.
 
 Fourth, Transaction Compression [7], observes that Bitcoin transaction serialization is not optimized for storage or network communication. If transactions were optimally compressed (as is possible today), this would improve scalability, but not capacity, by roughly 20%, and in some cases over 30%.
 
-Fifth, Schnorr Signature Aggregation, which shrinks transactions by allowing many transactions to have a single shared signature, has been implemented [8] in draft form in libsecp256k1, and will likely be ready by Q4 of 2016. One analysis [9] suggests that signature aggregation would result in storage and bandwidth savings of at least 25%, which would therefore increase scalability and capacity by a factor of 1.33. The relative savings are even greater for multisignature transactions.
+Fifth, Schnorr Signature Aggregation, which shrinks transactions by allowing many transactions to have a single shared signature, has been implemented [8] in draft form in libsecp256k1, and will likely be ready by Q1 of 2018. One analysis [9] suggests that signature aggregation would result in storage and bandwidth savings of at least 25%, which would therefore increase scalability and capacity by a factor of 1.33. The relative savings are even greater for multisignature transactions.
 
-Sixth, drivechain [10], which allows bitcoins to be temporarily offloaded to 'alternative' blockchain networks ("sidechains"), is  currently under peer review and may be usable by end of 2017. Although it has no impact on scalability, it does allow users to opt-in to greater capacity, by moving their BTC to a new network (although, they will achieve less decentralization as a result). Individual drivechains may have different security tradeoffs (for example, a greater reliance on UTXO commitments, or MimbleWimble's shrinking block history) which may give them individually greater scalability than mainchain Bitcoin.
+Sixth, drivechain [10], which allows bitcoins to be temporarily offloaded to 'alternative' blockchain networks ("sidechains"), is currently under peer review and may be usable by Q1 of 2018. Although it has no impact on scalability, it does allow users to opt-in to greater capacity, by moving their BTC to a new network (although, they will achieve less decentralization as a result). Any users who transact on sidechains will free up space on the mainchain (and, based on their rhetoric, we expect many users to choose to do this). Individual drivechains may have different security tradeoffs (for example, a greater reliance on UTXO commitments, or MimbleWimble's shrinking block history) which may give them individually greater scalability than mainchain Bitcoin.
 
 Finally, the capacity improvements outlined above may not be sufficient. If so, it may be necessary to use a hard fork to increase the blocksize (and blockweight, sigops, etc) by a moderate amount. Such an increase should take advantage of the existing research on hard forks, which is substantial [11]. Specifically, there is some consensus that Spoonnet [12] is the most attractive option for such a hardfork. There is currently no consensus on a hard fork date, but there is a rough consensus that one would require at least 6 months to coordinate effectively, which would place it in the year 2018 at earliest.
 
 The above are only a small sample of current scaling technologies. And even an exhaustive list of scaling technologies, would itself only be a small sample of total Bitcoin innovation (which is proceeding at breakneck speed).
 
 Signed,
-<Names Here>
+<Names Here> (no need to sign in this initial stage, but feel free to 'concept ack', see below)
 
 [1] https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2015-December/011865.html
 [2] https://bitcoincore.org/en/2017/03/13/performance-optimizations-1/
@@ -36,4 +36,33 @@ Signed,
 [11] https://bitcoinhardforkresearch.github.io/
 [12] https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2017-February/013542.html
 
- ==== End of Roadmap Draft ====
+ ==== End of Draft ====
+ 
+ 
+Optionally, feel free to endorse any of these positions:
+
+1. Perfect As-Is
+------------------
+<names here>
+
+
+2. Acceptance w/ minor revisions
+(Conditional on minor uncontroversial edits, I would sign this)
+------------------------------------------------------------------------------------------------
+<names here>
+
+
+3. Concept ACK
+(I like the idea, but won't endorse this document yet)
+----------------------------------------------------------------------
+<names here>
+
+
+4. Concept NACK
+(I don't like the idea, and won't endorse this or similar documents)
+---------------------------------------------------------------------
+<names here>
+
+
+Notes:
+(add your note[s] here)
